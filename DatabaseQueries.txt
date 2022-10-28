@@ -1,0 +1,22 @@
+Table Creation;
+
+create table semployee(seid varchar(20) primary key,name varchar(20),contact bigint(20),shiftstart time,shiftend time);
+
+
+create table customer(cid varchar(20) primary key,name varchar(20),contact bigint(20),address varchar(20));
+
+
+create table distributor(did varchar(20) primary key,name varchar(20),contact bigint(20),address varchar(20));
+
+
+create table item(iid varchar(20),quantity varchar(20),category varchar(20),name varchar(20),sprice int(10),index(iid),index(quantity),primary key(iid,quantity));
+
+
+create table contract(did varchar(20),iid varchar(20),quantity varchar(20),bprice int,foreign key(did) references distributor(did),foreign key(iid) references item(iid),foreign key(quantity) references item(quantity),primary key(did,iid,quantity));
+
+
+create table sales(seid varchar(20),cid varchar(20),iid varchar(20),quantity varchar(20),Date date, foreign key(seid) references semployee(seid),foreign key(cid) references customer(cid),foreign key(iid) references item(iid),foreign key(quantity) references item(quantity),primary key(seid,cid,iid,quantity));
+
+
+create table sorder( cid varchar(20),Date date,price int,dprice int,foreign key(cid) references customer(cid));
+

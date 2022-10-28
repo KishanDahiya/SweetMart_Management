@@ -1,0 +1,237 @@
+1. semployee(seid,name,contact,shiftstart,shiftend);
+
+create table semployee(seid varchar(20) primary key,name varchar(20),contact bigint(20),shiftstart time,shiftend time);
+
+insert into semployee values("s001","Krupa",123321,"08:00:00","12:00:00");
+insert into semployee values("s002","Daizy",123322,"12:00:00","16:00:00");
+insert into semployee values("s003","Jayshah",123323,"16:00:00","20:00:00");
+insert into semployee values("s004","Kiran",123324,"08:00:00","12:00:00");
+insert into semployee values("s005","Dashline",123325,"12:00:00","16:00:00");
+insert into semployee values("s006","Jaya",123326,"16:00:00","20:00:00");
+
+_____________________________________________________________________
+
+2. distributor(did,name,contact,address);
+
+create table distributor(did varchar(20) primary key,name varchar(20),contact bigint(20),address varchar(20));
+
+insert into distributor values("d001","Vishal",123331,"Ankola");
+insert into distributor values("d002","Chandan",123332,"Ankola");
+insert into distributor values("d003","Usha",123333,"Karwar");
+insert into distributor values("d004","Prashant",123334,"Kumta");
+insert into distributor values("d005","Preeti",123335,"Gokarna");
+
+_____________________________________________________________________
+
+3. customer(cid,name,contact,address);
+
+create table customer(cid varchar(20) primary key,name varchar(20),contact bigint(20),address varchar(20));
+
+insert into customer values("c001","Pavan",123311,"Ankola");
+insert into customer values("c002","Rukhaya",123312,"Ankola");
+insert into customer values("c003","Pavitra",123313,"Karwar");
+insert into customer values("c004","Winil",123314,"Ankola");
+insert into customer values("c005","Rakshitha",123315,"Gokarna");
+insert into customer values("c006","Rakshit",123316,"Ankola");
+insert into customer values("c007","Rohan",123317,"Goa");
+insert into customer values("c008","Madhuri",123318,"Belgaum");
+insert into customer values("c009","Rosalia",123319,"Dharwad");
+insert into customer values("c010","Mahesh",123320,"Hubli");
+
+_____________________________________________________________________
+
+4. item(iid,quantity,category,name,sprice);
+
+create table item(iid varchar(20),quantity varchar(20),category varchar(20),name varchar(20),sprice int(10),index(iid),index(quantity),primary key(iid,quantity));
+
+snacks;
+insert into item values("i001","500gm","snack","Aloo Bhujia",140);
+insert into item values("i001","1000gm","snack","Aloo Bhujia",280);
+insert into item values("i002","500gm","snack","Khara Boondi",80);
+insert into item values("i002","1000gm","snack","Khara Boondi",160);
+insert into item values("i003","500gm","snack","Plain Sev",80);
+insert into item values("i003","1000gm","snack","Plain Sev",160);
+insert into item values("i004","500gm","snack","Mix Khara",100);
+insert into item values("i004","1000gm","snack","Mix Khara",200);
+insert into item values("i005","500gm","snack","Sweet Khara",100);
+insert into item values("i005","1000gm","snack","Sweet Khara",200);
+
+sweets;
+insert into item values("i006","500gm","sweet","Pista Burfi",200);
+insert into item values("i006","1000gm","sweet","Pista Burfi",400);
+insert into item values("i007","500gm","sweet","Dharwad Peda",140);
+insert into item values("i007","1000gm","sweet","Dharwad Peda",280);
+insert into item values("i008","500gm","sweet","Gulab Jamun",180);
+insert into item values("i008","1000gm","sweet","Gulab Jamun",360);
+insert into item values("i009","500gm","sweet","Mysore Pak",160);
+insert into item values("i009","1000gm","sweet","Mysore Pak",320);
+insert into item values("i010","500gm","sweet","Kaju Kathli",200);
+insert into item values("i010","1000gm","sweet","Kaju Kathli",400);
+
+drinks;
+insert into item values("i011","750ml","drink","Sprite",40);
+insert into item values("i011","1250ml","drink","Sprite",65);
+insert into item values("i012","750ml","drink","Cocacola",40);
+insert into item values("i012","1250ml","drink","Cocacola",65);
+insert into item values("i013","750ml","drink","Fanta",40);
+insert into item values("i013","1250ml","drink","Fanta",65);
+insert into item values("i014","750ml","drink","Soda",20);
+insert into item values("i014","1250ml","drink","Soda",40);
+insert into item values("i015","250ml","drink","Badam Milk",35);
+insert into item values("i015","500ml","drink","Badam Milk",60);
+
+_____________________________________________________________________
+
+5. contract(did,iid,quantity,bprice);
+
+create table contract(did varchar(20),iid varchar(20),quantity varchar(20),bprice int,foreign key(did) references distributor(did),foreign key(iid) references item(iid),foreign key(quantity) references item(quantity),primary key(did,iid,quantity));
+
+snack;
+distributor 1;
+insert into contract values("d001","i001","500gm",120);
+insert into contract values("d001","i001","1000gm",240);
+insert into contract values("d001","i002","500gm",60);
+insert into contract values("d001","i002","1000gm",120);
+insert into contract values("d001","i003","500gm",60);
+insert into contract values("d001","i003","1000gm",120);
+insert into contract values("d001","i004","500gm",80);
+insert into contract values("d001","i004","1000gm",160);
+insert into contract values("d001","i005","500gm",80);
+insert into contract values("d001","i005","1000gm",160);
+
+distributor 2;
+insert into contract values("d002","i001","500gm",130);
+insert into contract values("d002","i001","1000gm",260);
+insert into contract values("d002","i002","500gm",70);
+insert into contract values("d002","i002","1000gm",140);
+insert into contract values("d002","i003","500gm",70);
+insert into contract values("d002","i003","1000gm",140);
+insert into contract values("d002","i004","500gm",90);
+insert into contract values("d002","i004","1000gm",180);
+insert into contract values("d002","i005","500gm",90);
+insert into contract values("d002","i005","1000gm",180);
+
+sweets;
+distributor 1;
+insert into contract values("d001","i006","500gm",180);
+insert into contract values("d001","i006","1000gm",360);
+insert into contract values("d001","i007","500gm",120);
+insert into contract values("d001","i007","1000gm",240);
+insert into contract values("d001","i008","500gm",160);
+insert into contract values("d001","i008","1000gm",320);
+insert into contract values("d001","i009","500gm",140);
+insert into contract values("d001","i009","1000gm",280);
+insert into contract values("d001","i010","500gm",180);
+insert into contract values("d001","i010","1000gm",360);
+
+distributor 3;
+insert into contract values("d003","i006","500gm",190);
+insert into contract values("d003","i006","1000gm",380);
+insert into contract values("d003","i007","500gm",130);
+insert into contract values("d003","i007","1000gm",260);
+insert into contract values("d003","i008","500gm",170);
+insert into contract values("d003","i008","1000gm",340);
+insert into contract values("d003","i009","500gm",150);
+insert into contract values("d003","i009","1000gm",300);
+insert into contract values("d003","i010","500gm",190);
+insert into contract values("d003","i010","1000gm",380);
+
+
+drinks;
+distributor 1;
+insert into contract values("d001","i011","750ml",37);
+insert into contract values("d001","i011","1250ml",60);
+insert into contract values("d001","i012","750ml",37);
+insert into contract values("d001","i012","1250ml",60);
+insert into contract values("d001","i013","750ml",37);
+insert into contract values("d001","i013","1250ml",60);
+insert into contract values("d001","i014","750ml",17);
+insert into contract values("d001","i014","1250ml",35);
+insert into contract values("d001","i015","250ml",32);
+insert into contract values("d001","i015","500ml",55);
+
+distributor 5;
+insert into contract values("d005","i011","750ml",38);
+insert into contract values("d005","i011","1250ml",62);
+insert into contract values("d005","i012","750ml",38);
+insert into contract values("d005","i012","1250ml",62);
+insert into contract values("d005","i013","750ml",38);
+insert into contract values("d005","i013","1250ml",62);
+insert into contract values("d005","i014","750ml",18);
+insert into contract values("d005","i014","1250ml",37);
+insert into contract values("d005","i015","250ml",33);
+insert into contract values("d005","i015","500ml",57);
+
+distributor 4 supplies no items;
+
+_____________________________________________________________________
+
+6. sales(seid,cid,iid,quantity,Date);
+
+create table sales(seid varchar(20),cid varchar(20),iid varchar(20),quantity varchar(20),Date date, foreign key(seid) references semployee(seid),foreign key(cid) references customer(cid),foreign key(iid) references item(iid),foreign key(quantity) references item(quantity),primary key(seid,cid,iid,quantity));
+
+sales from 10 Feb to 12 Feb, shift 8am to 12pm by employee 1 and 2;
+insert into sales values("s001","c001","i001","1000gm","2022-02-10");
+insert into sales values("s001","c001","i002","500gm","2022-02-10");
+insert into sales values("s001","c001","i003","1000gm","2022-02-10");
+insert into sales values("s001","c002","i003","500gm","2022-02-10");
+insert into sales values("s001","c002","i005","1000gm","2022-02-11");
+insert into sales values("s002","c002","i001","500gm","2022-02-11");
+insert into sales values("s002","c002","i002","1000gm","2022-02-11");
+insert into sales values("s002","c003","i004","500gm","2022-02-11");
+insert into sales values("s002","c003","i005","500gm","2022-02-11");
+insert into sales values("s002","c004","i001","1000gm","2022-02-12");
+insert into sales values("s001","c004","i004","500gm","2022-02-12");
+insert into sales values("s001","c005","i002","1000gm","2022-02-12");
+insert into sales values("s002","c004","i005","500gm","2022-02-12");
+insert into sales values("s002","c005","i003","1000gm","2022-02-12");
+
+sales from 10 Feb to 12 Feb, shift 12pm to 4pm by employee 3 and 4;
+insert into sales values("s003","c006","i006","1000gm","2022-02-10");
+insert into sales values("s003","c007","i007","500gm","2022-02-10");
+insert into sales values("s003","c006","i008","1000gm","2022-02-10");
+insert into sales values("s003","c007","i008","500gm","2022-02-10");
+insert into sales values("s003","c010","i009","1000gm","2022-02-11");
+insert into sales values("s004","c006","i006","500gm","2022-02-11");
+insert into sales values("s004","c010","i007","1000gm","2022-02-11");
+insert into sales values("s003","c006","i010","500gm","2022-02-11");
+insert into sales values("s004","c007","i009","500gm","2022-02-11");
+insert into sales values("s003","c004","i006","1000gm","2022-02-12");
+insert into sales values("s003","c007","i010","500gm","2022-02-12");
+insert into sales values("s003","c005","i007","1000gm","2022-02-12");
+insert into sales values("s004","c004","i012","750ml","2022-02-12");
+insert into sales values("s003","c005","i008","1000gm","2022-02-12");
+
+sales from 10 Feb to 12 Feb, shift 4pm to 8pm by employee 5 and 6;
+insert into sales values("s006","c010","i011","1250ml","2022-02-10");
+insert into sales values("s006","c008","i012","1250ml","2022-02-10");
+insert into sales values("s006","c009","i013","1250ml","2022-02-12");
+insert into sales values("s006","c002","i011","750ml","2022-02-12");
+insert into sales values("s006","c009","i015","250ml","2022-02-11");
+insert into sales values("s006","c008","i013","1250ml","2022-02-11");
+insert into sales values("s006","c010","i014","750ml","2022-02-11");
+
+Employee 5 has been absent for these days;
+
+_____________________________________________________________________
+
+7. sorder(cid,Date,price,dprice);
+
+create table sorder( cid varchar(20),Date date,price int,dprice int,foreign key(cid) references customer(cid));
+
+Special Orders of February 2022; 
+insert into sorder values("c002","2022-02-04",800,50);
+insert into sorder values("c002","2022-02-04",400,50);
+insert into sorder values("c001","2022-02-07",800,50);
+insert into sorder values("c004","2022-02-08",1800,150);
+insert into sorder values("c003","2022-02-02",900,120);
+insert into sorder values("c007","2022-02-09",1400,60);
+insert into sorder values("c009","2022-02-12",1110,50);
+insert into sorder values("c010","2022-02-16",2400,120);
+insert into sorder values("c010","2022-02-24",400,20);
+insert into sorder values("c005","2022-02-22",500,20);
+insert into sorder values("c003","2022-02-21",400,50);
+insert into sorder values("c007","2022-02-28",1200,50);
+insert into sorder values("c009","2022-02-25",1800,120);
+insert into sorder values("c004","2022-02-06",936,68);
+insert into sorder values("c001","2022-02-14",800,50);
